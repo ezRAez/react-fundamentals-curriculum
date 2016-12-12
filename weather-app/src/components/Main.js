@@ -3,7 +3,7 @@ import React                   from 'react';
 
 function Main(props) {
   return (
-    <div className="col-md-12 jumbotron text-center main-container">
+    <div className="col-md-12 text-center main-container">
       {props.children}
     </div>
   );

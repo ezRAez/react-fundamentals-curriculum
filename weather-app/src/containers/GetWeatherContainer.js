@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
-import LocationInput        from '../components/LocationInput'
-import        { Link }      from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import WeatherPrompt           from '../components/WeatherPrompt';
+
 
 class GetWeatherContainer extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  };
+
   constructor() {
     super();
 
@@ -11,28 +15,43 @@ class GetWeatherContainer extends Component {
     }
   }
 
+  handleSubmitLocation(e) {
+    e.preventDefault();
+    this.setState({
+      locationInfo: ""
+    });
+
+    this.context.router.push({
+      pathname: '/weekly',
+      query: {
+        location: this.state.locationInfo
+      }
+    })
+  }
+
   handleUpdateLocation(e) {
     this.setState({
       locationInfo: e.target.value
-    })
+    });
   }
 
   render() {
     return (
-      <div className="col-sm-12">
-        <h3>WE KNOW ALL THE WEATHER</h3>
-        <form>
-          <div className="form-group col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-            <LocationInput onUpdateLocation={(e) =>  this.handleUpdateLocation(e)}
-                           locationInfo={this.state.locationInfo}/>
-          </div>
-        </form>
-        <div className="col-sm-offset-4 col-sm-4 col-lg-offset-5 col-lg-2">
-          <Link className="btn btn-lg btn-success">GIVE ME WEATHER</Link>
-        </div>
+      <div>
+      <div className="nav-container">
+        <WeatherPrompt onSubmit={(e) => this.handleSubmitLocation(e)}
+                       onUpdateLocation={(e) =>  this.handleUpdateLocation(e)}
+                       locationInfo={this.state.locationInfo} />
+      </div>
+      <div className="col-sm-12 welcome-container jumbotron">
+        <WeatherPrompt onSubmit={(e) => this.handleSubmitLocation(e)}
+                       onUpdateLocation={(e) =>  this.handleUpdateLocation(e)}
+                       locationInfo={this.state.locationInfo} />
+      </div>
       </div>
     );
   }
 }
+
 
 export default GetWeatherContainer;

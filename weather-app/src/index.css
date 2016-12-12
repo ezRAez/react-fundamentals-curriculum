@@ -1,16 +1,35 @@
-html, body {
+html, body, .main-container {
   margin: 0;
   height: 100vh;
   width: 100vw;
   padding: 0;
   font-family: sans-serif;
-  background-color: #000519;
+  background-image: url(/images/pattern.svg);
+  background-repeat: none;
+  background-size: cover;
   box-sizing: border-box;
   position: relative;
 }
 
-.main-container {
+.nav-container {
+  position: absolute;
+}
+
+.welcome-container {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.prompt-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300;
+}
+
+.nav-container .prompt-container, .nav-container .prompt-container form {
+  flex-direction: row;
+  align-self: right;
 }

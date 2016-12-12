@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 function LocationInput (props) {
   return (
@@ -9,5 +9,10 @@ function LocationInput (props) {
            value={props.locationInfo} />
   );
 }
+
+LocationInput.propTypes = {
+  locationInfo: PropTypes.string.isRequired,
+  onUpdateLocation: PropTypes.func.isRequired
+};
 
 export default LocationInput;
